@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from models import User
+from users.models import User
 
 # 이 시리얼 라이저는 유저필드의 데이터들로 JSON을 생성하게 해줌 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,4 +25,11 @@ class UserSerializer(serializers.ModelSerializer):
         def create(self, validated_data):
             # 앞어 정의한 매니저에 크리에이트 유저를 사용하여 사용자 객체를 생성해서 반환함 
             return User.objects.create_user(**validated_data)
+        
+        #update의 경우 새로 메소드를 재정의한것이 아니기 때문에 재정의 해 줄 필요없으나 
+        # create의 경우는 메소드를 재정의 해줬기 때문에 재정의 해준것임 
+        
+        
+        
+        
         

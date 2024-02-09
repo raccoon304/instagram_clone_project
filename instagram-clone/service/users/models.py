@@ -30,6 +30,10 @@ class UserManager(BaseUserManager):
 #모델 정의 
 class User(AbstractUser):
     TIMEOUT = 60 * 5 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+    
+    
     
     #이메일에 저장될수 있는 문자열의 크기를 제한 (256)
     # unique 속성을 True 로 하면 중복이 안됨 
@@ -42,8 +46,8 @@ class User(AbstractUser):
     #authcode는 따로 class로 만료기한 등을 정해 줄수 있는데 구현의 단순화를 위해 유저 정보 내 포함  
     authcode = models.CharField(max_length=17)
     
-    created = models.DataTimeField(auto_now_add = True)
-    updated = models.DataTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+    updated = models.DateTimeField(auto_now = True)
     
     #class의 ordering을 통해서 객체를 불러올 때 마다 어떤 순서로 가져올지 정할 수 있는데 created 로 설정 
                                                                                     #-> 생성 순서로 데이터를 가져옴 
